@@ -159,7 +159,7 @@ export class ChatGPTApi implements LLMApi {
                     ss = rawList[inn]
                     if (ss !== "") {
                         const text = ss.replaceAll("data: ", "")
-                        console.log(t)
+                        console.log(text)
                         if ("[DONE]" === msg.data || i)
                             return finish();
                         try {
