@@ -148,39 +148,31 @@ export class ChatGPTApi implements LLMApi {
               return finish();
             }
           },
-          onmessage(t)  {
-            if (t.data !== "") {
-
-                var raw = JSON.parse(t.data)["data"]
+          onmessage(msg)  {
+            if (msg.data !== "") {
+                var raw = JSON.parse(msg.data)["data"]
                 var rawList = raw.split("\n")
                 var rawLength = rawList.length
-            var inn
-            var n
-                    var ss
+                var inn
+                var ss
                 for (inn = 0; inn < rawLength; inn++) {
-                        ss=rawList[inn]
-                    if (ss!=="") {
-                            
-                    
-                    n = ss.replaceAll("data: ", "")
-
-                    console.log(t)
-
-                    if ("[DONE]" === t.data || i)
-                        return c();
-
-                    try {
-
-                        let t = JSON.parse(n)
-                          , i = t.choices[0].delta.content;
-                        if (i) {
-                            var a;
-                            o += i,
-                            null === (a = e.onUpdate) || void 0 === a || a.call(e, o, i)
+                    ss = rawList[inn]
+                    if (ss !== "") {
+                        const text = ss.replaceAll("data: ", "")
+                        console.log(t)
+                        if ("[DONE]" === msg.data || i)
+                            return finish();
+                        try {
+                            const json = JSON.parse(n)
+                            const delta = json.choices[0].delta.content;
+                            if (i) {
+                                responseText += delta;
+                                options.onUpdate?.(responseText, delta);
+                            }
+                        } catch (e) {
+                            console.error("[Request] parse error", text, msg)
                         }
-                    } catch (e) {
-                        console.error("[Request] parse error", n, t)
-                    }}
+                    }
                 }
             }
         },
