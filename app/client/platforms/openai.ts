@@ -148,22 +148,41 @@ export class ChatGPTApi implements LLMApi {
               return finish();
             }
           },
-          onmessage(msg) {
-            if (msg.data === "[DONE]" || finished) {
-              return finish();
+          onmessage(t)  {
+            if (t.data !== "") {
+
+                var raw = JSON.parse(t.data)["data"]
+                var rawList = raw.split("\n")
+                var rawLength = rawList.length
+            var inn
+                    var ss
+                for (inn = 0; inn < rawLength; inn++) {
+                        ss=rawList[inn]
+                    if (ss!=="") {
+                            
+                    
+                    n = ss.replaceAll("data: ", "")
+
+                    console.log(t)
+
+                    if ("[DONE]" === t.data || i)
+                        return c();
+
+                    try {
+
+                        let t = JSON.parse(n)
+                          , i = t.choices[0].delta.content;
+                        if (i) {
+                            var a;
+                            o += i,
+                            null === (a = e.onUpdate) || void 0 === a || a.call(e, o, i)
+                        }
+                    } catch (e) {
+                        console.error("[Request] parse error", n, t)
+                    }}
+                }
             }
-            const text = msg.data;
-            try {
-              const json = JSON.parse(text);
-              const delta = json.choices[0].delta.content;
-              if (delta) {
-                responseText += delta;
-                options.onUpdate?.(responseText, delta);
-              }
-            } catch (e) {
-              console.error("[Request] parse error", text, msg);
-            }
-          },
+        },
           onclose() {
             finish();
           },
