@@ -297,7 +297,7 @@ export const useChatStore = create<ChatStore>()(
 
         }
         const userMessage: ChatMessage = createMessage({
-          role: "system",
+          role: roleName,
           content: userContent,
         });
 
