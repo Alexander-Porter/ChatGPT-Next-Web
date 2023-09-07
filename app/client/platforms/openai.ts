@@ -155,6 +155,7 @@ export class ChatGPTApi implements LLMApi {
                 var rawList = raw.split("\n")
                 var rawLength = rawList.length
             var inn
+            var n
                     var ss
                 for (inn = 0; inn < rawLength; inn++) {
                         ss=rawList[inn]
