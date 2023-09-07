@@ -153,14 +153,14 @@ export class ChatGPTApi implements LLMApi {
                 var raw = JSON.parse(msg.data)["data"]
                 var rawList = raw.split("\n")
                 var rawLength = rawList.length
-                var inn
+                var index1
                 var ss
-                for (inn = 0; inn < rawLength; inn++) {
-                    ss = rawList[inn]
+                for (index1 = 0; index1 < rawLength; index1++) {
+                    ss = rawList[index1]
                     if (ss !== "") {
                         const text = ss.replaceAll("data: ", "")
                         console.log(text)
-                        if ("[DONE]" === msg.data || i)
+                        if ("[DONE]" === msg.data || finished)
                             return finish();
                         try {
                             const json = JSON.parse(n)
