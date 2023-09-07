@@ -286,23 +286,20 @@ export const useChatStore = create<ChatStore>()(
 
         const userContent = fillTemplateWith(content, modelConfig);
         console.log("[User Input] after template: ", userContent);
-
+        var roleName:MessageRole
         if (userContent.startsWith("System:")) {
-          const userMessage: ChatMessage = createMessage({
-            role: "system",
-            content: userContent,
-          });
+          var roleName = "system" as MessageRole
+
 
         }
         else {
-          const userMessage: ChatMessage = createMessage({
-            role: "user",
-            content: userContent,
-          });
+          var roleName = "user" as MessageRole
 
         }
-
-
+        const userMessage: ChatMessage = createMessage({
+          role: "system",
+          content: userContent,
+        });
 
         const botMessage: ChatMessage = createMessage({
           role: "assistant",
