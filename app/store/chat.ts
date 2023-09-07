@@ -287,7 +287,7 @@ export const useChatStore = create<ChatStore>()(
         const userContent = fillTemplateWith(content, modelConfig);
         console.log("[User Input] after template: ", userContent);
         var roleName
-        if (userContent.startsWith("System:") {
+        if (userContent.startsWith("System:")) {
           roleName="system"
 
         }
