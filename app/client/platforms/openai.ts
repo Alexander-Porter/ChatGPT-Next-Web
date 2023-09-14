@@ -49,9 +49,12 @@ export class ChatGPTApi implements LLMApi {
   }
 
   async chat(options: ChatOptions) {
-    const messages = options.messages.map((v) => ({
+    var messagesA = options.messages.map((v) => ({
       role: v.role,
       content: v.content,
+      isSensitive: false,
+      needCheck: false,
+      id: "",
     }));
 
     const modelConfig = {
@@ -63,13 +66,7 @@ export class ChatGPTApi implements LLMApi {
     };
 
     const requestPayload = {
-      messages,
-      stream: options.config.stream,
-      model: modelConfig.model,
-      temperature: modelConfig.temperature,
-      presence_penalty: modelConfig.presence_penalty,
-      frequency_penalty: modelConfig.frequency_penalty,
-      top_p: modelConfig.top_p,
+      messages: JSON.stringify(messagesA),
     };
 
     console.log("[Request] openai payload: ", requestPayload);
@@ -148,34 +145,33 @@ export class ChatGPTApi implements LLMApi {
               return finish();
             }
           },
-          onmessage(msg)  {
+          onmessage(msg) {
             if (msg.data !== "") {
-                var raw = JSON.parse(msg.data)["data"]
-                var rawList = raw.split("\n")
-                var rawLength = rawList.length
-                var index1
-                var ss
-                for (index1 = 0; index1 < rawLength; index1++) {
-                    ss = rawList[index1]
-                    if (ss !== "") {
-                        const text = ss.replaceAll("data: ", "")
-                        console.log(text)
-                        if ("[DONE]" === msg.data || finished)
-                            return finish();
-                        try {
-                            const json = JSON.parse(text)
-                            const delta = json.choices[0].delta.content;
-                            if (delta) {
-                                responseText += delta;
-                                options.onUpdate?.(responseText, delta);
-                            }
-                        } catch (e) {
-                            console.error("[Request] parse error", text, msg)
-                        }
+              var raw = JSON.parse(msg.data)["data"];
+              var rawList = raw.split("\n");
+              var rawLength = rawList.length;
+              var index1;
+              var ss;
+              for (index1 = 0; index1 < rawLength; index1++) {
+                ss = rawList[index1];
+                if (ss !== "") {
+                  const text = ss.replaceAll("data: ", "");
+                  console.log(text);
+                  if ("[DONE]" === msg.data || finished) return finish();
+                  try {
+                    const json = JSON.parse(text);
+                    const delta = json.choices[0].delta.content;
+                    if (delta) {
+                      responseText += delta;
+                      options.onUpdate?.(responseText, delta);
                     }
+                  } catch (e) {
+                    console.error("[Request] parse error", text, msg);
+                  }
                 }
+              }
             }
-        },
+          },
           onclose() {
             finish();
           },
