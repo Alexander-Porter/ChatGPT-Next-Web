@@ -121,8 +121,7 @@ export function SideBar(props: { className?: string }) {
           Chat it!
         </div>
         <div className={styles["sidebar-sub-title"]}>
-          Build your own AI assistant.
-          Remember that messages prefixed with “System:” hold higher priority for ChatGPT.
+          Build your own AI assistant and/or partner.
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
