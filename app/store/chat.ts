@@ -288,7 +288,7 @@ export const useChatStore = create<ChatStore>()(
         console.log("[User Input] after template: ", userContent);
 
         const userMessage: ChatMessage = createMessage({
-          role: userContent.startsWith("System:")?"system":"user",
+          role: "user",
           content: userContent,
         });
 
