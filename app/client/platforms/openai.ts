@@ -65,11 +65,11 @@ export class ChatGPTApi implements LLMApi {
     const T = Date.now();
     const M = messages?.[messages.length - 1]?.content || "";
     const toSign = T + ":" + M + ":" + RSAKey;
-    const sign = SHA256(T + ":" + M + ":" + RSAKey).toString();
+    const sign = SHA256(toSign).toString();
     const requestPayload = {
       messages: messages,
       pass: null,
-      time: Date.now(),
+      time: T,
       sign: sign,
     };
 
