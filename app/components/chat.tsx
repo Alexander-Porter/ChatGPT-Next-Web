@@ -1034,6 +1034,7 @@ function _Chat() {
 
   return (
     <div className={styles.chat} key={session.id}>
+      <audio src="" id="myAudio"></audio>
       <div className="window-header" data-tauri-drag-region>
         {isMobileScreen && (
           <div className="window-actions">
@@ -1100,7 +1101,7 @@ function _Chat() {
           setShowModal={setShowPromptModal}
         />
       </div>
-      <audio src="" id="myAudio"></audio>
+
       <div
         className={styles["chat-body"]}
         ref={scrollRef}

@@ -50,6 +50,7 @@ export const DEFAULT_CONFIG = {
     historyMessageCount: 4,
     compressMessageLengthThreshold: 1000,
     enableInjectSystemPrompts: true,
+    enableVoice: false,
     template: DEFAULT_INPUT_TEMPLATE,
   },
 };
