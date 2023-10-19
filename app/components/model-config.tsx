@@ -160,6 +160,32 @@ export function ModelConfigList(props: {
           }
         ></input>
       </ListItem>
+      <ListItem
+        title={Locale.Settings.VoiceOn.Title}
+        subTitle={Locale.Settings.VoiceOn.SubTitle}
+      >
+        <input
+          type="checkbox"
+          checked={props.modelConfig.enableVoice}
+          onChange={(e) =>
+            props.updateConfig(
+              (config) => (config.enableVoice = e.currentTarget.checked),
+            )
+          }
+        ></input>
+      </ListItem>
+      <ListItem
+        title={Locale.Settings.VoiceCharacter.Title}
+        subTitle={Locale.Settings.VoiceCharacter.SubTitle}
+      >
+        <input
+          type="text"
+          value={props.modelConfig.vc}
+          onChange={(e) =>
+            props.updateConfig((config) => (config.vc = e.currentTarget.value))
+          }
+        ></input>
+      </ListItem>
 
       <ListItem
         title={Locale.Settings.HistoryCount.Title}

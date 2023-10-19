@@ -8,7 +8,7 @@
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "ChatGPT Next Web",
+    "productName": "Chat it!",
     "version": "2.9.5"
   },
   "tauri": {
@@ -61,7 +61,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.yida.chatgpt.next.web",
+      "identifier": "com.snakekiss.chat",
       "longDescription": "ChatGPT Next Web is a cross-platform ChatGPT client, including Web/Win/Linux/OSX/PWA.",
       "macOS": {
         "entitlements": null,
@@ -83,7 +83,7 @@
       "csp": null
     },
     "updater": {
-      "active": true,
+      "active": false,
       "endpoints": [
         "https://github.com/Yidadaa/ChatGPT-Next-Web/releases/latest/download/latest.json"
       ],
@@ -98,7 +98,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "ChatGPT Next Web",
+        "title": "Chat it!",
         "width": 960,
         "hiddenTitle": true,
         "titleBarStyle": "Overlay"

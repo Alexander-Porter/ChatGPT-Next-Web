@@ -39,6 +39,7 @@ export const DEFAULT_CONFIG = {
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
+    vc: "枫原万叶",
     model: "gpt-3.5-turbo" as ModelType,
     temperature: 0.5,
     top_p: 1,
@@ -49,6 +50,7 @@ export const DEFAULT_CONFIG = {
     historyMessageCount: 4,
     compressMessageLengthThreshold: 1000,
     enableInjectSystemPrompts: true,
+    enableVoice: false,
     template: DEFAULT_INPUT_TEMPLATE,
   },
 };
