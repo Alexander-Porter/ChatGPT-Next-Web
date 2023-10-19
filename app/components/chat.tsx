@@ -1100,7 +1100,7 @@ function _Chat() {
           setShowModal={setShowPromptModal}
         />
       </div>
-
+      <audio src="" id="myAudio"></audio>
       <div
         className={styles["chat-body"]}
         ref={scrollRef}

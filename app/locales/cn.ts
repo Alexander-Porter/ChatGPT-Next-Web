@@ -158,6 +158,10 @@ const cn = {
       Title: "用户输入预处理",
       SubTitle: "用户最新的一条消息会填充到此模板",
     },
+    VoiceCharacter: {
+      Title: "Bot发声器名字",
+      SubTitle: "直接输入角色名。",
+    },
 
     Update: {
       Version: (x: string) => `当前版本：${x}`,

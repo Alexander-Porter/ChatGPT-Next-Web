@@ -160,6 +160,10 @@ const en: LocaleType = {
       Title: "Input Template",
       SubTitle: "Newest message will be filled to this template",
     },
+    VoiceCharacter: {
+      Title: "Who is speaking?",
+      SubTitle: "Enter their name.",
+    },
 
     Update: {
       Version: (x: string) => `Version: ${x}`,

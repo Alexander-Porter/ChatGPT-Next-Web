@@ -332,6 +332,20 @@ export const useChatStore = create<ChatStore>()(
             botMessage.streaming = false;
             if (message) {
               botMessage.content = message;
+              const audio = <HTMLAudioElement>(
+                document.getElementById("myAudio")
+              );
+              if (audio !== null) {
+                audio.setAttribute(
+                  "src",
+                  "https://genshinvoice.top/api?speaker=" +
+                    modelConfig.vc +
+                    "&text=" +
+                    message +
+                    "&format=wav&length=1&noise=0.5&noisew=0.9&sdp_ratio=0.2",
+                );
+                audio.play();
+              }
               get().onNewMessage(botMessage);
             }
             ChatControllerPool.remove(session.id, botMessage.id);
